@@ -1,0 +1,6 @@
+# kullanım
+
+´python3 ps.py 80´
+
+## UYARI
+LİNUX TA BİR HATA DOLAYI KOLAY KULLANILAMIYOR
