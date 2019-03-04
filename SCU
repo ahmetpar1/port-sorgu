@@ -1,0 +1,56 @@
+#!/bin/bash 
+clear # terminali temizler
+
+# root kullanıcısı kontrolü
+if [ $USER != "root" ];then echo "bu programı root kullanıcısı olarak başlatın" && exit ; fi
+
+# paket yöneticisi seçme
+echo "paket yöneticisi seçin"
+select i in "apt" "kapat"
+do
+	if [ $i == "apt" ] # ubuntu / debian  paket yöneticisi
+	then
+		# paket leri günçelleme
+		echo "sistem günçelleniyor"
+		sleep 1
+		apt update && apt upgrade
+		while true
+		do
+		# protocol seçme 
+		clear
+		echo $kurulmus
+		echo "kurmak istediginiz server seçin"
+		select i in "LAMP" "openSSH" "samba" "miniDLNA" "transmission-web" "kapat"
+			do
+				if [ $i == "LAMP" ] # linux apache MySQL php kurma
+				then
+					apt install apache2 php7.0 mysql-server php7.0-mysql 
+				elif [ $i == "openSSH" ] 
+				then
+					apt install openssh-server
+				elif [ $i == samba ]
+				then
+					apt install samba
+				elif [ $i == miniDLNA ]
+				then
+					apt install minidlna
+				elif [ $i == "transmission-web" ]
+				then
+					apt install transmission-cli transmission-common transmission-daemon
+				elif [ $i == "kapat" ]
+				then
+					exit
+				fi
+				kurulmus="$i başarıyla kuruldu"
+				break
+			done
+		done	
+	elif [ $i == "kapat" ]
+	then
+		exit
+	else 
+			echo "bir hata ile karşılaşıldı"
+			break
+			exit
+	fi
+done
