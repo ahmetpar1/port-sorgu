@@ -16,6 +16,7 @@ portl = {"21":"FTP",
       "194":"IRC",
       "443":"SSL",
       "445":"SMB",
+      "554":"RTMP"
       "1433":"MSSQL",
       "3306":"MySQL",
       "3389":"Remote Desktop",
